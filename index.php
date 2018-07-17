@@ -1,3 +1,4 @@
+<?php include "bancodedados.php"?>
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -28,6 +29,7 @@
       <main role="main" class="inner cover">
         <h1 class="cover-heading" id="Palavra">&nbsp;</h1>
         <p class="lead" id="Traducao">&nbsp;</p>
+        <p class="exemplo" id="Exemplo">&nbsp;</p>
       </main>
 
       <footer class="mastfoot mt-auto">
