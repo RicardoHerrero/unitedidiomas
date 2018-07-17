@@ -1,7 +1,7 @@
 var termos          = palavra.length
 
 function iniciarDicionario(){
-    var consulta    = Math.floor(Math.random() * termos + 1) - 1
+    var consulta    = Math.floor(Math.random() * termos + 1);
     document.getElementById('Traducao').innerHTML = "&nbsp;";
     document.getElementById('Exemplo').innerHTML = "&nbsp;";
     document.getElementById('Palavra').innerHTML = palavra[consulta];
