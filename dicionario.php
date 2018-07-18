@@ -4,8 +4,13 @@ if (!$conn->set_charset("utf8")) {
   printf("Error loading character set utf8: %s\n", $conn->error);
   exit();
 }
+$concat="";
+if( !empty( $_GET['grupo'] ) ) $concat .= " and grupo like '".$_GET['grupo']."' ";
+if( !empty( $_GET['unidade'] ) ) $concat .= " and unidade LIKE '".$_GET['unidade']."' ";
+if( !empty( $_GET['tipo'] ) ) $concat .= " and tipo LIKE '".$_GET['tipo']."' ";
 
-$SQL = "select termoid, palavra, traducao, exemplo from Termos where grupo like 'book 01';";
+$SQL = "select termoid, palavra, traducao, exemplo from Termos where 1=1 ".$concat;
+//exit($SQL);
 $RS  = mysqli_query($conn, $SQL) or die("Erro");
 if( $RS->num_rows >0 ){
     $palavra   = "['Herrero'";
