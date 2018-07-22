@@ -1,26 +1,37 @@
-var termos          = palavra.length
+var termos     = palavra.length
+var historico  = new Array()
+var consulta   = ""
+var limite     = termos - 1
 
 function iniciarDicionario(){
-    var consulta    = Math.floor(Math.random() * termos + 1);
+
+    var consulta    = Math.floor(Math.random() * (termos - 1) + 1)
+    while(historico.indexOf(consulta)>=0){
+        consulta    = Math.floor(Math.random() * (termos - 1) + 1)
+        console.log("new Random = " + consulta)
+    }
+
     document.getElementById('Traducao').innerHTML = "&nbsp;";
     document.getElementById('Exemplo').innerHTML = "&nbsp;";
     document.getElementById('Palavra').innerHTML = palavra[consulta];
     setTimeout(function(){exibirTraducao(consulta)},3500);
+
+    historico.push(consulta);
+    
+    console.log("Tamanho do array Termos: "+termos)    
+    console.log("Tamanho do array Historico: "+historico.length)
+    console.log(historico)
+    
 }
 function exibirTraducao(consulta){
     document.getElementById('Traducao').innerHTML = traducao[consulta];
     document.getElementById('Exemplo').innerHTML = exemplo[consulta]+"&nbsp;";
     setTimeout(iniciarDicionario,2000);
-}
 
-/* iOS re-orientation fix */
-if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
-    /* iOS hides Safari address bar */
-    window.addEventListener("load",function() {
-        setTimeout(function() {
-            window.scrollTo(0, 1);
-        }, 1000);
-    });
+    if( limite == historico.length) {
+        historico = []
+        console.log("Zerando. Iniciando novo array. Starting.")
+    }
 }
 
 iniciarDicionario();
